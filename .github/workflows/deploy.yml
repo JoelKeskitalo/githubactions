@@ -6,8 +6,8 @@ on:
       - main
 
 permissions:
-  pages: write # Ger skrivbehörighet till GitHub Pages
-  id-token: write # Valfritt men kan krävas för vissa delar av GitHub Actions (ta bort om det inte behövs)
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
@@ -34,9 +34,10 @@ jobs:
         run: npm run build
         working-directory: ./githubactions-react
 
-      # Deploy to GitHub Pages (deploy the dist folder from the react project directory)
+      # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
           publish_dir: ./githubactions-react/dist
