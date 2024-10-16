@@ -24,15 +24,13 @@ jobs:
         with:
           node-version: "16"
 
-      # Install dependencies (run from the react project directory)
+      # Install dependencies (run from root directory)
       - name: Install dependencies
         run: npm install
-        working-directory: ./githubactions-react
 
-      # Build the React project (run from the react project directory)
+      # Build the React project (run from root directory)
       - name: Build project
         run: npm run build
-        working-directory: ./githubactions-react
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
@@ -40,4 +38,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ./githubactions-react/dist
+          publish_dir: ./dist
