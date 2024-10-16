@@ -6,9 +6,8 @@ on:
       - main
 
 permissions:
-  content: read
-  pages: write
-  id-token: write
+  pages: write # Ger skrivbehörighet till GitHub Pages
+  id-token: write # Valfritt men kan krävas för vissa delar av GitHub Actions (ta bort om det inte behövs)
 
 jobs:
   build-and-deploy:
