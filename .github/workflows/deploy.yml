@@ -10,20 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Check out the repository code
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      # Set up Node.js (specify the version)
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: "16"
 
+      # Install dependencies (run from root directory)
       - name: Install dependencies
         run: npm install
 
-      - name: Build the React project
+      # Build the React project (run from root directory)
+      - name: Build project
         run: npm run build
 
+      # Deploy to GitHub Pages (publish the built files in the dist folder)
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
