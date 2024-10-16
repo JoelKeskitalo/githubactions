@@ -20,17 +20,19 @@ jobs:
         with:
           node-version: "16"
 
-      # Install dependencies (run from root directory)
+      # Install dependencies (run from the react project directory)
       - name: Install dependencies
         run: npm install
+        working-directory: ./githubactions-react
 
-      # Build the React project (run from root directory)
+      # Build the React project (run from the react project directory)
       - name: Build project
         run: npm run build
+        working-directory: ./githubactions-react
 
-      # Deploy to GitHub Pages (publish the built files in the dist folder)
+      # Deploy to GitHub Pages (deploy the dist folder from the react project directory)
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./githubactions-react/dist
