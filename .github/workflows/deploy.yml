@@ -14,28 +14,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Check out the repository code
+      # Step 1: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Set up Node.js (specify the version)
+      # Step 2: Set up Node.js (specify the version)
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: "16"
 
-      # Install dependencies (run from root directory)
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Build the React project (run from root directory)
+      # Step 4: Build the React project
       - name: Build project
         run: npm run build
 
-      # Deploy to GitHub Pages
+      # Step 5: Setup Git for deployment
+      - name: Setup Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      # Step 6: Deploy to GitHub Pages (using PERSONAL_TOKEN)
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.PERSONAL_TOKEN }}
           publish_branch: gh-pages
           publish_dir: ./dist
